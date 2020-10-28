@@ -15,7 +15,7 @@ namespace Funda.Workers
     {
         private readonly ILogger _logger;
         private readonly IRealEstateService _realEstateService;
-        
+
         public TopTenAgentsWorker(ILogger<TopTenAgentsWorker> logger, IRealEstateService realEstateService)
         {
             _logger = logger;
@@ -33,9 +33,10 @@ namespace Funda.Workers
                 PageSize = 25
             });
 
-            // print;
-            Console.WriteLine($"NUMBER OF OBJECTS : {objectsInAmsterdam.Count}");
-            //_realEstateService.GetAgentsByObjectCount(objectsInAmsterdam).Take(10).ToList().ForEach(i => Console.WriteLine($"{i.Name} - {i.ObjectCount}"));
+            Console.Clear();
+            Console.WriteLine($"TOTAL NUMBER OF OBJECTS IN AMSTERDAM : {objectsInAmsterdam.Count}");
+            Console.WriteLine("TOP 10 REAL ESTATE AGENTS IN AMSTERDAM");
+            _realEstateService.GetAgentsByObjectCount(objectsInAmsterdam).Take(10).ToList().ForEach(i => Console.WriteLine($"makelaar {i.Name} has {i.ObjectCount} objects listed"));
         }
     }
 }

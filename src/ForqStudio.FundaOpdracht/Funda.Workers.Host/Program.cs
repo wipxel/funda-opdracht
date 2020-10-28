@@ -22,7 +22,6 @@ namespace Funda.Workers.Host
             Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
               .ConfigureHostConfiguration(hostConfig =>
               {
-                  var currentDirectory = Directory.GetCurrentDirectory();
                   hostConfig.SetBasePath(Directory.GetCurrentDirectory());
                   hostConfig.AddJsonFile("appsettings.json", optional: true);
                   hostConfig.AddEnvironmentVariables(prefix: "FUNDA_");

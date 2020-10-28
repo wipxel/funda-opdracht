@@ -60,7 +60,31 @@ namespace Funda.Workers
 
         public List<RealEstateAgent> GetAgentsByObjectCount(List<RealEstateObject> realEstateObjects)
         {
-            throw new NotImplementedException();
+            if (realEstateObjects == null)
+                throw new ArgumentNullException("realEstateObjects");
+
+            var makelaars = new Dictionary<string, int>();
+            foreach (var realEstateObject in realEstateObjects)
+            {
+                var realEstateObjectCount = 0;
+                var realEstateAgentName = realEstateObject.MakelaarNaam.ToUpper();
+                if (makelaars.TryGetValue(realEstateAgentName, out realEstateObjectCount))
+                {
+                    makelaars[realEstateAgentName] = realEstateObjectCount += 1;
+                }
+                else
+                {
+                    makelaars[realEstateAgentName] = 1;
+                }
+            }
+
+            var results = new List<RealEstateAgent>();
+            foreach (var item in makelaars.OrderByDescending(i => i.Value))
+            {
+                results.Add(new RealEstateAgent() { Name = item.Key, ObjectCount = item.Value });
+            }
+
+            return results;
         }
     }
 }
