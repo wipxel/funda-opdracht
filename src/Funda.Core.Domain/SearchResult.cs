@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Funda.Core.Domain
 {
-    public class GetObjectsResponse
+    public class GetAllObjectsResult
     {
         public int? AccountStatus { get; set; }
         public bool EmailNotConfirmed { get; set; }

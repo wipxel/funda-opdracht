@@ -27,8 +27,6 @@ namespace Funda.Partners.API.Client
             return queryString;
         }
 
-
-
         internal static string BuildSearchQuery(SearchQuery query)
         {
             var sb = new StringBuilder();

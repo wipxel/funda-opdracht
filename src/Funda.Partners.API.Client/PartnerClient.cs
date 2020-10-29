@@ -27,7 +27,7 @@ namespace Funda.Partners.API.Client
             _apiKey = apiKey;
         }
 
-        public async Task<GetObjectsResponse> GetRealEstateSupplyAsync(SearchQuery query, CancellationToken cancellationToken)
+        public async Task<GetAllObjectsResult> GetRealEstateSupplyAsync(SearchQuery query, CancellationToken cancellationToken)
         {
             var searchQuery = QueryHelper.BuildAanbodFeedQueryString(_apiKey, query);
 
@@ -37,7 +37,7 @@ namespace Funda.Partners.API.Client
                 if (response.IsSuccessStatusCode)
                 {
                     var responseString = await response.Content.ReadAsStringAsync();
-                    var responseObject = JsonConvert.DeserializeObject<GetObjectsResponse>(responseString, new JsonSerializerSettings() { MissingMemberHandling = MissingMemberHandling.Ignore, NullValueHandling = NullValueHandling.Ignore }); ;
+                    var responseObject = JsonConvert.DeserializeObject<GetAllObjectsResult>(responseString, new JsonSerializerSettings() { MissingMemberHandling = MissingMemberHandling.Ignore, NullValueHandling = NullValueHandling.Ignore }); ;
                     return responseObject;
                 }
 

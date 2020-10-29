@@ -9,7 +9,6 @@ namespace Funda.Core.Application
 {
     public interface IRealEstateService
     {
-        List<RealEstateAgent> GetAgentsByObjectCount(List<RealEstateObject> realEstateObjects);
         Task<List<RealEstateObject>> GetAllRealEstateObjects(SearchQuery query, CancellationToken cancellationToken);
     }
 }

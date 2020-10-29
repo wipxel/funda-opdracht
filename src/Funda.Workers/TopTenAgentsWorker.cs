@@ -33,10 +33,22 @@ namespace Funda.Workers
                 PageSize = 25
             }, stoppingToken);
 
+
+            var topTenList = objectsInAmsterdam
+                .GroupBy(o => o.MakelaarId)
+                .Select(g => new RealEstateAgent()
+                {
+                    Id = g.Key,
+                    Name = g.First().MakelaarNaam,
+                    ObjectCount = g.Count(),
+                })
+                .OrderByDescending(r => r.ObjectCount)
+                .Take(10);
+            
             Console.Clear();
             Console.WriteLine($"TOTAL NUMBER OF OBJECTS IN AMSTERDAM : {objectsInAmsterdam.Count}");
             Console.WriteLine("TOP 10 REAL ESTATE AGENTS IN AMSTERDAM");
-            _realEstateService.GetAgentsByObjectCount(objectsInAmsterdam).Take(10).ToList().ForEach(i => Console.WriteLine($"makelaar {i.Name} has {i.ObjectCount} objects listed"));
+            topTenList.ToList().ForEach(i => Console.WriteLine($"makelaar {i.Name} has {i.ObjectCount} objects listed"));
         }
     }
 }

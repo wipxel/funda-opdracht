@@ -7,6 +7,6 @@ namespace Funda.Core.Application
 {
     public interface IPartnerClient
     {
-        Task<GetObjectsResponse> GetRealEstateSupplyAsync(SearchQuery query, CancellationToken cancellationToken);
+        Task<GetAllObjectsResult> GetRealEstateSupplyAsync(SearchQuery query, CancellationToken cancellationToken);
     }
 }
