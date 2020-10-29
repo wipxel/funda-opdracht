@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Funda.Core.Application
@@ -9,6 +10,6 @@ namespace Funda.Core.Application
     public interface IRealEstateService
     {
         List<RealEstateAgent> GetAgentsByObjectCount(List<RealEstateObject> realEstateObjects);
-        Task<List<RealEstateObject>> GetAllRealEstateObjects(SearchQuery query);
+        Task<List<RealEstateObject>> GetAllRealEstateObjects(SearchQuery query, CancellationToken cancellationToken);
     }
 }

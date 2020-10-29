@@ -31,7 +31,7 @@ namespace Funda.Workers
                 Location = "Amsterdam",
                 Page = 0,
                 PageSize = 25
-            });
+            }, stoppingToken);
 
             Console.Clear();
             Console.WriteLine($"TOTAL NUMBER OF OBJECTS IN AMSTERDAM : {objectsInAmsterdam.Count}");

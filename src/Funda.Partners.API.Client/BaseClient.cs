@@ -6,7 +6,7 @@ namespace Funda.Partners.API.Client
     public abstract class BaseClient
     {
         private readonly HttpClient _httpClient;
-        private string _apiKey;
+        private readonly string _apiKey;
         
        public BaseClient(HttpClient httpClient, string apiKey)
         {

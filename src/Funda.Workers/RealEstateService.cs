@@ -20,7 +20,7 @@ namespace Funda.Workers
             _partnerClient = partnerClient;
         }
 
-        public async Task<List<RealEstateObject>> GetAllRealEstateObjects(SearchQuery query)
+        public async Task<List<RealEstateObject>> GetAllRealEstateObjects(SearchQuery query, CancellationToken cancellationToken)
         {
             var allFundaObjects = new List<RealEstateObject>();
             var hasNext = true;
@@ -30,10 +30,13 @@ namespace Funda.Workers
                 Thread.Sleep(500); // TODO: Implement a delegating handler with a semaphore or create a PolicyWrap using Polly Library
                 try
                 {
+                    if (cancellationToken.IsCancellationRequested)
+                        break;
+
                     if (currentPage != query.Page) //if we are not in the first iteration we need to update the query's page property
                         query.Page = currentPage;
 
-                    var fetchResult = await _partnerClient.GetRealEstateSupplyAsync(query);
+                    var fetchResult = await _partnerClient.GetRealEstateSupplyAsync(query, cancellationToken);
 
                     // if we have real estate objects we add them to the list
                     var noObjectsReturned = (fetchResult == null || fetchResult.Objects == null || !fetchResult.Objects.Any());

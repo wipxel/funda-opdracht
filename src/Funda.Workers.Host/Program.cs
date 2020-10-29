@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 
-namespace Funda.Workers.Host
+namespace Funda.Workers.AppHost
 {
     class Program
     {
@@ -19,7 +19,7 @@ namespace Funda.Workers.Host
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
+             Host.CreateDefaultBuilder(args)
               .ConfigureHostConfiguration(hostConfig =>
               {
                   hostConfig.SetBasePath(Directory.GetCurrentDirectory());

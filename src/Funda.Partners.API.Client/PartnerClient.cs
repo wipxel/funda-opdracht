@@ -27,7 +27,7 @@ namespace Funda.Partners.API.Client
             _apiKey = apiKey;
         }
 
-        public async Task<GetObjectsResponse> GetRealEstateSupplyAsync(SearchQuery query)
+        public async Task<GetObjectsResponse> GetRealEstateSupplyAsync(SearchQuery query, CancellationToken cancellationToken)
         {
             var searchQuery = QueryHelper.BuildAanbodFeedQueryString(_apiKey, query);
 
